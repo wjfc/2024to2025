@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" id="input">
+  <!--恶意代码 <img src="sss" onerror="alert(1)" alt=""> -->
+  <!-- 恶意代码 <a href="https://www">钓鱼网站</a> -->
+  <button id="search">搜索</button>
+  <div>
+    <p>搜索结果</p>
+    <div id="result"></div>
+    
+  </div>
+  <script>
+    const btn = document.getElementById("search");
+    const result = document.getElementById("result");
+    const input = document.getElementById("input");
+    btn.onclick = async () => {
+      
+      // 模拟请求
+      let res = await new Promise(resolve => {
+        let value = input.value;
+        resolve("结果" + decodeURI(value));
+      })
+      console.log(res)
+      result.innerHTML = res;
+    }
+  </script>
+</body>
+
+</html>
